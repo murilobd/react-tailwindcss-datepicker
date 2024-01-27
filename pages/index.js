@@ -109,9 +109,9 @@ export default function Playground() {
                     dateLooking={dateLooking}
                     disabledDates={disabledDates}
                     startWeekOn={startWeekOn}
-                    toggleIcon={isEmpty => {
-                        return isEmpty ? "Select Date" : "Clear";
-                    }}
+                    // toggleIcon={isEmpty => {
+                    //     return isEmpty ? "Select Date" : "Clear";
+                    // }}
                     popoverDirection={"down"}
                     // classNames={{
                     //     input: ({ disabled, readOnly, className }) => {

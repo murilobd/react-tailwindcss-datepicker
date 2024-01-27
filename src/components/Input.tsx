@@ -55,7 +55,7 @@ const Input: React.FC<Props> = (e: Props) => {
         const ring =
             RING_COLOR["second-focus"][primaryColor as keyof (typeof RING_COLOR)["second-focus"]];
 
-        const defaultInputClassName = `relative transition-all duration-300 py-2.5 pl-4 pr-14 w-full border-gray-300 dark:bg-slate-800 dark:text-white/80 dark:border-slate-600 rounded-lg tracking-wide font-light text-sm placeholder-gray-400 bg-white focus:ring disabled:opacity-40 disabled:cursor-not-allowed ${border} ${ring}`;
+        const defaultInputClassName = `relative transition-all duration-300 py-2.5 pl-10 pr-14 w-full border-gray-300 dark:bg-slate-800 dark:text-white/80 dark:border-slate-600 rounded-lg tracking-wide font-light text-sm placeholder-gray-400 bg-white focus:ring disabled:opacity-40 disabled:cursor-not-allowed ${border} ${ring}`;
 
         return typeof inputClassName === "function"
             ? inputClassName(defaultInputClassName)
@@ -267,6 +267,9 @@ const Input: React.FC<Props> = (e: Props) => {
 
     return (
         <>
+            <button className="absolute left-0 h-full px-3 text-gray-400 focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed z-10">
+                <ToggleButton isEmpty={true} />
+            </button>
             <input
                 ref={inputRef}
                 type="text"
@@ -286,15 +289,17 @@ const Input: React.FC<Props> = (e: Props) => {
                 onChange={handleInputChange}
                 onKeyDown={handleInputKeyDown}
             />
-
-            <button
-                type="button"
-                ref={buttonRef}
-                disabled={disabled}
-                className={getToggleClassName()}
-            >
-                {renderToggleIcon(inputText == null || !inputText?.length)}
-            </button>
+            {Object.values(period).filter(Boolean).length === 2 && (
+                <button
+                    type="button"
+                    ref={buttonRef}
+                    disabled={disabled}
+                    className={getToggleClassName()}
+                >
+                    {renderToggleIcon(false)}
+                    {/* {renderToggleIcon(inputText == null || !inputText?.length)} */}
+                </button>
+            )}
         </>
     );
 };
